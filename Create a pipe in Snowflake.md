@@ -75,31 +75,3 @@ Check the Pipe status to check if the pipe is running.
 select SYSTEM$PIPE_STATUS('S3_db.public.S3_pipe');
 ```
 
-
-
-
-
-### Configure Snowpipe User Permissions
-
-To ensure the Snowflake user associated with executing the Snowpipe actions had sufficient permissions, create a unique 
-role to manage Snowpipe security privileges. Do not employ the user account you're currently utilizing, instead create a 
-new user to assign to Snowpipe within the web console.
-
-```snowflake
--- Create Role
-use role securityadmin;
-create or replace role S3_role;
-
--- Grant Object Access and Insert Permission
-grant usage on database S3_db to role S3_role;
-grant usage on schema S3_db.public to role S3_role;
-grant insert, select on S3_db.public.S3_table to role S3_role;
-grant usage on stage S3_db.public.S3_stage to role S3_role;
-
--- Bestow S3_pipe Ownership
-grant ownership on pipe S3_db.public.S3_pipe to role S3_role;
-
--- Grant S3_role and Set as Default
-grant role S3_role to user <username>;
-alter user <username> set default_role = S3_role;
-```
