@@ -10,7 +10,7 @@ Good luck and have fun!
 
 # BI Engineer Task
 
-There are Five stages to this task:
+There are four stages to this task:
 
 **Data Gathering** : Unhash the data (`/data/bi_data.zip`),extract it and, more importantly, place it in a data warehouse like Snowflake or Big Query so you can use it for the rest of the tasks in this challenge.
 
