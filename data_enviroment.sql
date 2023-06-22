@@ -13,8 +13,10 @@ desc integration S3_role_integration;
 -- Create a Database
 create or replace database datatalks;
 
--- Create schema RAW
+-- Create schemas
 create or replace schema raw;
+create or replace schema analytics;
+create or replace schema dbt;
 
 -- Create a Snowflake stage (stage can be defined as an intermediary space for uploading/unloading source files)
 use schema datatalks.raw;
@@ -107,3 +109,4 @@ select SYSTEM$PIPE_STATUS('datatalks.raw.S3_pipe_interactions');
 
 -- Check the ingestion status
 select * from table (information_schema.copy_history(table_name=>'datatalks.raw.users',start_time=> dateadd(hours, -1,current_timestamp())));
+
