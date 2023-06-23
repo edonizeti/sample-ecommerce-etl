@@ -15,7 +15,7 @@ create or replace database datatalks;
 
 -- Create schemas
 create or replace schema raw;
-create or replace schema analytics;
+create or replace schema stage;
 create or replace schema dbt;
 
 -- Create a Snowflake stage (stage can be defined as an intermediary space for uploading/unloading source files)
