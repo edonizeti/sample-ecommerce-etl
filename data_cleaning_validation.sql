@@ -1,6 +1,7 @@
 -- Table validation according to the data dictionary
 
 -- User table validation
+
 -- there are no id duplicated
 with duplicated_id as (
     select USERS.*,
