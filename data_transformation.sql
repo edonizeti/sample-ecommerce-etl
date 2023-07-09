@@ -111,11 +111,11 @@ CREATE OR REPLACE TABLE TRANSACTION_JORNEY as (
                 ,PIVO.USER_ID
                 ,PRODUCT.NAME
                 ,PRODUCT.CATEGORY
-                ,TO_DATE(PIVO.EVENT_1) AS Product_Viewed
-                ,TO_DATE(PIVO.EVENT_2) AS Product_Added
-                ,TO_DATE(PIVO.EVENT_3) AS Cart_Viewed
-                ,TO_DATE(PIVO.EVENT_4) AS Checkout_Started
-                ,TO_DATE(PIVO.EVENT_5) AS Order_Completed
+                ,PIVO.EVENT_1 AS Product_Viewed
+                ,PIVO.EVENT_2 AS Product_Added
+                ,PIVO.EVENT_3 AS Cart_Viewed
+                ,PIVO.EVENT_4 AS Checkout_Started
+                ,PIVO.EVENT_5 AS Order_Completed
                 ,PIVO.DISCOUNT
                 ,PRODUCT.PRICE
             FROM PIVO
@@ -127,3 +127,96 @@ CREATE OR REPLACE TABLE TRANSACTION_JORNEY as (
 
 ----------------------------------------------------------------------------------------------------
 -- Create Transaction_Journey table
+CREATE OR REPLACE TABLE SUMMARY as (
+    WITH
+    TR_DUPLICATES AS (
+        SELECT *
+            ,ROW_NUMBER() OVER(PARTITION BY ITEM_ID,USER_ID,EVENT_TYPE,TIMESTAMP,DISCOUNT ORDER BY TIMESTAMP) AS REGNUMBER
+        FROM RAW.INTERACTIONS
+    ),
+    TR_UNIQUES AS (
+        SELECT
+            TR.ITEM_ID
+            ,PD.NAME
+            ,PD.CATEGORY
+            ,PD.PRICE
+            ,TR.USER_ID
+            ,TR.EVENT_TYPE
+            ,TO_TIMESTAMP(TR.TIMESTAMP) AS TIMESTAMP
+        FROM TR_DUPLICATES AS TR
+        LEFT JOIN RAW.PRODUCTS AS PD
+        ON TR.ITEM_ID = PD.ID
+        WHERE TR.REGNUMBER = 1
+
+    ),
+    COUNT_CATEGORY AS (
+        SELECT
+            CATEGORY
+            ,COUNT_IF(EVENT_TYPE = 'ProductViewed') AS total_products_viewed
+            ,COUNT_IF(EVENT_TYPE = 'ProductAdded') AS total_products_added
+            ,COUNT_IF(EVENT_TYPE = 'CartViewed') AS total_cart_viewed
+            ,COUNT_IF(EVENT_TYPE = 'CheckoutStarted') AS total_checkout_started
+            ,COUNT_IF(EVENT_TYPE = 'OrderCompleted') AS total_orders_completed
+            ,COUNT(EVENT_TYPE) AS total_interactions
+        FROM TR_UNIQUES
+        GROUP BY CATEGORY
+    ),
+    PRODUCT_ADDED AS (
+        SELECT
+            CATEGORY,
+            ITEM_ID,
+            USER_ID,
+            EVENT_TYPE,
+            TO_DATE(TO_TIMESTAMP(TIMESTAMP)) AS DATE
+        FROM TR_UNIQUES
+        WHERE EVENT_TYPE = 'ProductAdded'
+    ),
+-- NUMERO DE VEZES QUE O ITEM FOI ADICIONADO AO CARRINHO NO MESMO DIA
+    NUMBER_ADD AS (
+        SELECT DISTINCT *,
+            COUNT(*) OVER (PARTITION BY USER_ID,ITEM_ID,DATE ORDER BY DATE) AS NUMBER_ADD
+        FROM PRODUCT_ADDED
+    ),
+    TOTAL_ORDERS AS (
+        SELECT
+            CATEGORY,
+            COUNT(NUMBER_ADD) AS total_orders
+        FROM NUMBER_ADD
+        GROUP BY CATEGORY
+    ),
+    CUST_ORDERED AS (
+        SELECT *,
+            ROW_NUMBER() OVER(PARTITION BY USER_ID,CATEGORY ORDER BY TIMESTAMP) AS CUST_ORDERED
+        FROM TR_UNIQUES
+        WHERE EVENT_TYPE = 'OrderCompleted'
+    ),
+    REVENUE AS (
+        SELECT CATEGORY,
+            SUM(PRICE) AS total_revenue
+        FROM TR_UNIQUES
+        WHERE EVENT_TYPE = 'OrderCompleted'
+        GROUP BY CATEGORY
+    ),
+    FINAL AS (
+        SELECT
+            CTC.CATEGORY AS product_category,
+            CTC.total_products_viewed,
+            CTC.total_products_added,
+            CTC.total_cart_viewed,
+            CTC.total_checkout_started,
+            CTC.total_orders_completed,
+            CTC.total_interactions,
+            TTO.total_orders,
+            COUNT_IF(CTO.CUST_ORDERED = 1) AS total_customers_ordered,
+            ZEROIFNULL(ROUND(REV.total_revenue,2)) AS total_revenue
+        FROM COUNT_CATEGORY AS CTC
+        LEFT JOIN TOTAL_ORDERS AS TTO
+        ON CTC.CATEGORY = TTO.CATEGORY
+            LEFT JOIN CUST_ORDERED AS CTO
+            ON CTC.CATEGORY = CTO.CATEGORY
+                LEFT JOIN REVENUE AS REV
+                ON CTC.CATEGORY = REV.CATEGORY
+        GROUP BY 1,2,3,4,5,6,7,8,10
+    )
+    SELECT * FROM FINAL
+);
