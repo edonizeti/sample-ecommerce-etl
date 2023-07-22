@@ -1,3 +1,5 @@
+# BI Engineer Challenger - Sales ETL Project
+
 This challenge was designed to assess your skills and knowledge in data analysis and visualization. As a BI Engineer, you will play a key role in extracting, transforming, and analyzing data to provide valuable insights.
 
 In this challenge, you will face a situation where you need to deal with complex datasets, and your task will be to clean and model this data to create an efficient data warehouse environment. Additionally, you will be challenged to create interactive and intuitive visualizations to present the insights in a clear manner.
@@ -8,21 +10,38 @@ This challenge is an opportunity for you to showcase your technical skills and y
 
 Good luck and have fun!
 
-# BI Engineer Task
+# Solution
 
-There are four stages to this task:
+You can see my solution for the challenge [here](solution.md)
 
-**Data Gathering** : Unhash the data (`/data/bi_data.zip`),extract it and, more importantly, place it in a data warehouse like Snowflake or Big Query so you can use it for the rest of the tasks in this challenge.
+# Project
 
-**Data Cleaning** : Write SQL queries to answer the following questions using the data.
+There are **five** stages to this task:
+
+- Data Gathering
+- Data Cleaning
+- Data Transformation
+- Data Analysis
+- Data Visualisation
+
+
+## 1. Data Gathering
+
+Unhash the data (`/data/bi_data.zip`),extract it and, more importantly, place it in a data warehouse like Snowflake or Big Query so you can use it for the rest of the tasks in this challenge.
+
+## 2. Data Cleaning
+
+Answer the following questions using the data.
 
 1. Can you identify some data quality issues within all the three sources that have been provided and cleaned before any further transformation or analysis is done?
 2. Can you document the issues and assumptions made?
 
 
-**Data Transformation** : Transform the raw data provided in order to create staging and summary tables as shown below. 
+## 3. Data Transformation
 
-- Create a *User Journey* table with the following information
+Transform the raw data provided in order to create staging and summary tables as shown below. 
+
+### - Create a *"User Journey"* table with the following information
 
 | Column_Name | Type | Description |
 |-|-|-|
@@ -38,7 +57,7 @@ There are four stages to this task:
 | zipcode | STRING | Zipcode information of the user - obtained from the addresses column in the users.csv file |
 | total_orders | INTEGER | Total orders placed by the user |
 
-- Create a *Transaction Journey* table with the following information
+### - Create a *"Transaction Journey"* table with the following information
 
 | Column_Name | Type | Description |
 |-|-|-|
@@ -54,7 +73,7 @@ There are four stages to this task:
 | discount | BOOLEAN | True or False column to indicate if a discount was applied to the product or not  |
 | price | FLOAT | price of the product |
 
-- Create a *Summary* table with the following information
+### - Create a *"Summary"* table with the following information
 
 | Column_Name | Type | Description |
 |-|-|-|
@@ -69,17 +88,21 @@ There are four stages to this task:
 | total_customers_ordered | INTEGER | Total customers who ordered products of the particular category |
 | total_revenue | FLOAT | Total revenue obtained for the particular category. |
 
-**Data Analysis** : *Analyse the Data* - Based on the above tables created can you answer the following questions.
+## 4. Data Analysis
+
+Based on the above tables created can you answer the following questions.
 
 1. Which event has low transition rate and can you let us know the transition rate across each of the events?
+
 2. What is the percentage of Cart abandonment across the store, where Cart abandonment consists of events_type (Added to cart and checkout started) but orders are not completed?
+
 3. Find the average duration between checkout started and order completed and do you find any anomaly in the data?
 
-**Data Visualisation** : *Visualise the Data* 
+## 5. Data Visualisation
 
 Create a dashboard to visualise the data and provide us with at least 3 interesting insights that you can draw from this data
 
-## Data
+# Data
 
 The data can be found in the `/data/bi_data.zip` file.
 
