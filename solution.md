@@ -1,8 +1,8 @@
 # BI Engineer Challenger - Sales ETL Project Solution
 
-## 1. Data Architeture
+## 1. Data Architecture
 
-![data_architeture](/images/data_architeture.png)
+![data_architecture](/images/data_architecture.png)
 
 
 ## 2. Dataset Description
