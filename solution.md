@@ -17,7 +17,7 @@ The idea was to create an integration using Apache Airflow to unzip and upload l
 
 First, an S3 Bucket was created in my AWS account to store the **.csv** files. Also, the necessary roles and policies were created in IAM to integrate the S3 bucket with Snowflake. 
 
-To see the steps on how to create and configure the S3 bucket [click here](configure_S3_and_permissions.md). 
+To see the steps on how to create and configure the S3 bucket [click here](https://github.com/edonizeti/integration_S3_bucket_and_snowpipe). 
 
 If you don’t have an AWS account yet [click here](https://github.com/data-talks-sydney/create-AWS-free-account).
 
@@ -26,7 +26,7 @@ If you don’t have an AWS account yet [click here](https://github.com/data-talk
 
 The integration between Snowflake and AWS S3 Bucket was created through Snowpipe.
 
-To see the steps on how to create a pipe in Snowflake [click here](Create_snowpipe.md). 
+To see the steps on how to create a pipe in Snowflake [click here](https://github.com/edonizeti/integration_S3_bucket_and_snowpipe). 
 
 To see the SQL scrypt that I used to create the enviroment and the integration [click here](data_gathering_enviroment.sql).
 
