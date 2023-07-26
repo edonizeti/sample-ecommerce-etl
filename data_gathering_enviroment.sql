@@ -15,6 +15,7 @@ create or replace database bi_engineer_challenger;
 
 -- Create schemas
 create or replace schema raw;
+create or replace schema staging;
 create or replace schema analytics;
 
 -- Create a Snowflake stage (stage can be defined as an intermediary space for uploading/unloading source files)
