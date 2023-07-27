@@ -41,12 +41,10 @@ A DAG (Directed Acyclic Graph) was created to unzip the .csv files and upload th
 
 To see the step by step to run Airflow via Docker-Desktop [click here](https://github.com/edonizeti/apache_airflow_using_docker_desktop/blob/main/README.md)
 
-## 4. Data Cleaning
+## 4. Data Cleaning/Transformation
 
-## 5. Data Transformation
+## 5. Data Analysis
 
-## 6. Data Analysis
+## 6. Data Visualisation
 
-## 7. Data Visualisation
-
-## 8. Tech Stack
+## 7. Tech Stack
