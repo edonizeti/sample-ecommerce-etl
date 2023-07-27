@@ -1,3 +1,6 @@
+# Jetbrains
+.idea
+
 # DBT
 target/
 dbt_packages/
@@ -16,4 +19,3 @@ data/uploaded
 
 # Python
 .venv
-
