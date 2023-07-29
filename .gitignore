@@ -1,5 +1,5 @@
 # Jetbrains
-.idea
+.idea/
 
 # DBT
 target/
@@ -18,4 +18,4 @@ data/extracted
 data/uploaded
 
 # Python
-.venv
+.venv/

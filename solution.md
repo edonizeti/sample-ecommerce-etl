@@ -43,6 +43,12 @@ To see the step by step to run Airflow via Docker-Desktop [click here](https://g
 
 ## 4. Data Cleaning/Transformation
 
+to install dbt run:
+    pip install dbt-snowflake
+
+
+
+
 ## 5. Data Analysis
 
 ## 6. Data Visualisation
