@@ -1,0 +1,7 @@
+###### Requirements without Version Specifiers ######
+
+apache-airflow
+apache-airflow-providers-amazon
+dbt-snowflake
+
+###### Requirements with Version Specifiers ######
