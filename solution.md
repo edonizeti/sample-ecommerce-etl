@@ -46,14 +46,10 @@ To see the step by step to run Airflow via Docker-Desktop [click here](https://g
 
 ## 4. Data Cleaning/Transformation
 
-I made the choice to utilize dbt core and made an effort to adhere to the recommended approaches.
+In this stage, the idea is to use dbt to perform all data cleaning and processing tasks, so that they can be in a more organized form for analysis and dashboard creation.
 
-To begin, I set up dbt core with the snowflake adapter within my environment (pip install dbt-snowflake).
+The concept here involves extracting the raw, unprocessed data from the RAW schema, performing all the necessary data cleaning and transformations, and storing them in the STAGING schema. Subsequently, these processed data will be presented in a more organized manner in the ANALYTICS schema, enabling efficient querying and visualization through aggregation, filtering, and other manipulations.
 
-The concept here involves extracting the unprocessed data from the RAW schema, performing all necessary cleaning and transformations on the data, and storing it in the STAGING schema. Subsequently, this processed data will be presented in a more organized manner in the ANALYTICS schema, allowing for efficient querying and visualization through aggregation, filtering, and other manipulations.
+## 5. Data Analysis and Data Visualisation
 
-## 5. Data Analysis
-
-## 6. Data Visualisation
-
-## 7. Tech Stack
+## 6. Tech Stack
