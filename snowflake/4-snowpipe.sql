@@ -1,5 +1,3 @@
-use role sysadmin;
-
 -- Create Pipes to ingest data
 create or replace pipe S3_pipe_interactions auto_ingest=true as
     copy into interactions
@@ -39,4 +37,4 @@ select SYSTEM$PIPE_STATUS('S3_pipe_interactions');
 
 
 -- Check the ingestion status
-select * from table (information_schema.copy_history(table_name=>'bi_engineer_challenger.raw.users',start_time=> dateadd(hours, -1,current_timestamp())));
+select * from table (information_schema.copy_history(table_name=>'bi_engineer.raw.users',start_time=> dateadd(hours, -1,current_timestamp())));

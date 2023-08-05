@@ -1,12 +1,12 @@
 use role sysadmin;
 
 -- Create a Database
-create or replace database bi_engineer_challenger;
+create or replace database bi_engineer;
 
 -- Create schemas
-create or replace schema raw;
-create or replace schema staging;
-create or replace schema analytics;
+create or replace schema bi_engineer.raw;
+--create or replace schema staging;
+--create or replace schema analytics;
 
 -- Create tables that has the same structure as the CSV file
 create or replace table users(

@@ -19,3 +19,6 @@ data/uploaded
 
 # Python
 .venv/
+
+# VSCode
+.vscode/

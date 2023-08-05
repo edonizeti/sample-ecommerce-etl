@@ -22,14 +22,17 @@ To see the steps on how to create and configure the S3 bucket [click here](https
 If you don’t have an AWS account yet [click here](https://github.com/data-talks-sydney/create-AWS-free-account).
 
 
-### 3.2 - Snowflake Integration
+### 3.2 - Snowflake Integration, Database and Schemas
 
 The integration between Snowflake and AWS S3 Bucket was created through Snowpipe.
 
+3 different schemas were created within the database:
+
+- RAW - to receive the raw data from S3.
+- Staging - will receive clean RAW schema data.
+- Analytics - Is the analytics-ready schema, optimized for efficient querying and visualization.
+
 To see the steps on how to create a pipe in Snowflake [click here](https://github.com/edonizeti/integration_S3_bucket_and_snowpipe). 
-
-To see the SQL scrypt that I used to create the enviroment and the integration [click here](data_gathering_enviroment.sql).
-
 
 ### 3.3 - Apache Airflow
 
@@ -43,11 +46,11 @@ To see the step by step to run Airflow via Docker-Desktop [click here](https://g
 
 ## 4. Data Cleaning/Transformation
 
-to install dbt run:
-    pip install dbt-snowflake
+I made the choice to utilize dbt core and made an effort to adhere to the recommended approaches.
 
+To begin, I set up dbt core with the snowflake adapter within my environment (pip install dbt-snowflake).
 
-
+The concept here involves extracting the unprocessed data from the RAW schema, performing all necessary cleaning and transformations on the data, and storing it in the STAGING schema. Subsequently, this processed data will be presented in a more organized manner in the ANALYTICS schema, allowing for efficient querying and visualization through aggregation, filtering, and other manipulations.
 
 ## 5. Data Analysis
 

@@ -24,7 +24,7 @@ move_zip_to = "/etl-bi-engineer-datatalks-challenge/data/extracted"
 move_csv_to = "/etl-bi-engineer-datatalks-challenge/data/uploaded"
 
 # S3 Bucket
-bucket_name = "bi-engineer-challenger"
+bucket_name = "etl-bi-engineer"
 
 # Unzip the .zip files
 def unzip_files(zip_dir, extract_to):
@@ -50,7 +50,15 @@ def move_zip_file(zip_paths, move_zip_to):
     for zip_path in zip_paths:
         if not os.path.exists(move_zip_to):
             os.makedirs(move_zip_to)
-        os.rename(zip_path, os.path.join(move_zip_to, os.path.basename(zip_path)))
+        # Extract the original filename and extension
+        file_name, file_ext = os.path.splitext(os.path.basename(zip_path))
+        # Appending the date and time to the file name
+        timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+        # Create a new filename with the current date included
+        new_zip_path = f"{file_name}_{timestamp}{file_ext}"
+        # Move the file with the new filename
+        os.rename(zip_path, os.path.join(move_zip_to, new_zip_path))
+        #os.rename(zip_path, os.path.join(move_zip_to, os.path.basename(new_zip_path)))
         print(f"File {zip_path} successfully moved to {move_zip_to}")
 
 # upload the unzipped files to S3
@@ -85,7 +93,13 @@ def move_csv_files(csv_files_list, move_csv_to):
     for csv_path in csv_files_list:
         if not os.path.exists(move_csv_to):
             os.makedirs(move_csv_to)
-        os.rename(csv_path, os.path.join(move_csv_to, os.path.basename(csv_path)))
+        # Extract the original filename and extension
+        file_name, file_ext = os.path.splitext(os.path.basename(csv_path))       
+        # Appending the date and time to the file name
+        timestamp = datetime.now().strftime("%Y%m%d%H%M%S")       
+        # Create a new filename with the current date included
+        new_csv_path = f"{file_name}_{timestamp}{file_ext}"       
+        os.rename(csv_path, os.path.join(move_csv_to, os.path.basename(new_csv_path)))
         print(f"File {csv_path} successfully moved to {move_csv_to}")
 
 # Create DAG
