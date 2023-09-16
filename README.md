@@ -1,22 +1,10 @@
-# BI Engineer Challenger - Sales ETL Project
-
-This challenge was designed to assess your skills and knowledge in data analysis and visualization. As a BI Engineer, you will play a key role in extracting, transforming, and analyzing data to provide valuable insights.
-
-In this challenge, you will face a situation where you need to deal with complex datasets, and your task will be to clean and model this data to create an efficient data warehouse environment. Additionally, you will be challenged to create interactive and intuitive visualizations to present the insights in a clear manner.
-
-To succeed in this challenge, you will need to demonstrate proficiency in SQL and knowledge of business intelligence tools and technologies such as ETL (Extraction, Transformation, and Loading), data modeling, data analysis, and visualization. Furthermore, we expect you to demonstrate problem-solving skills, analytical thinking, and the ability to communicate insights effectively.
-
-This challenge is an opportunity for you to showcase your technical skills and your ability to work with data efficiently and effectively. We look forward to seeing how you approach this challenge and the creative solutions you bring to the table.
-
-Good luck and have fun!
-
 # Solution
 
 You can see my solution for the challenge [here](solution.md)
 
 # Project
 
-There are **five** stages to this task:
+There are **five** stages to this project:
 
 - Data Gathering
 - Data Cleaning
