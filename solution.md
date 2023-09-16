@@ -1,4 +1,4 @@
-# BI Engineer Challenger - Sales ETL Project Solution
+# Ecommerce Sales ETL Project Solution
 
 ## 1. Data Architecture
 
