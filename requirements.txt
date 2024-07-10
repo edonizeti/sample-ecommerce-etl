@@ -1,8 +1,0 @@
-###### Requirements without Version Specifiers ######
-snowflake-connector-python
-apache-airflow
-apache-airflow-providers-amazon
-snowflake-connector-python
-dbt-snowflake
-
-###### Requirements with Version Specifiers ######

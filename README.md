@@ -1,7 +1,3 @@
-# Solution
-
-You can see my solution for the challenge [here](solution.md)
-
 # Project
 
 There are **five** stages to this project:
@@ -15,7 +11,7 @@ There are **five** stages to this project:
 
 ## 1. Data Gathering
 
-Unhash the data (`/data/bi_data.zip`),extract it and, more importantly, place it in a data warehouse like Snowflake or Big Query so you can use it for the rest of the tasks in this challenge.
+1.1. Unhash the data (`/data/bi_data.zip`),extract it and, more importantly, place it in a data warehouse like Snowflake or Databricks so you can use it for the rest of the tasks in this challenge.
 
 ## 2. Data Cleaning
 
